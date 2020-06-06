@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"os"
 )
-//os.O_WRONLY|os.O_APPEND :: If this is ued then file is used to append
-//os.O_WRONLY|os.O_APPEND|os.O_TRUNC : if this is used then it first removes all the contents and then adds/appends
+// os.O_WRONLY|os.O_APPEND :: If this is ued then file is used to append
+// os.O_WRONLY|os.O_APPEND|os.O_TRUNC : if this is used then it first removes all the contents and then adds/appends
 
 
 func IsFileExist(path string) bool {
