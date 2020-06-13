@@ -21,3 +21,12 @@ func StringToIntMust(str string) (int)   {
 	}
 	return i
 }
+
+
+func StringConcatenate(str ...string) string {
+	sb := strings.Builder{}
+	for _,val := range str {
+		sb.WriteString(val)
+	}
+	return sb.String()
+}

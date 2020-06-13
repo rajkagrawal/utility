@@ -2,6 +2,7 @@ package strconv
 
 import (
 	"fmt"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -23,4 +24,9 @@ func TestConvertEngAlphabetToDecimalPos(t *testing.T) {
 	if ConvertEngAlphabetToDecimalPos("b") != 2 {
 		t.Fail()
 	}
+}
+
+
+func TestStringConcatenate(t *testing.T) {
+	assert.Equal(t,"howareyou",StringConcatenate("how","are","you"))
 }
