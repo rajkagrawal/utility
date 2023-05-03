@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func StringToInt(str string) (int, error)   {
+func StringToInt(str string) (int, error) {
 	return strconv.Atoi(str)
 }
 
@@ -14,18 +14,18 @@ func ConvertEngAlphabetToDecimalPos(s string) int {
 	return int(d)
 }
 
-func StringToIntMust(str string) (int)   {
-	i , err :=  strconv.Atoi(str)
-	if err!=nil{
+func StringToIntMust(str string) int {
+	i, err := strconv.Atoi(str)
+	if err != nil {
 		panic(err)
 	}
 	return i
 }
 
-
-func StringConcatenate(str ...string) string {
+func StringConcatenate(str1 string, str ...string) string {
 	sb := strings.Builder{}
-	for _,val := range str {
+	sb.WriteString(str1)
+	for _, val := range str {
 		sb.WriteString(val)
 	}
 	return sb.String()
