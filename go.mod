@@ -1,4 +1,4 @@
-module github.com/rajaanova/utility
+module github.com/rajaanova/utility/v2
 
 go 1.19
 
