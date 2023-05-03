@@ -6,39 +6,49 @@ import (
 	"io/ioutil"
 	"os"
 )
+
 // os.O_WRONLY|os.O_APPEND :: If this is ued then file is used to append
 // os.O_WRONLY|os.O_APPEND|os.O_TRUNC : if this is used then it first removes all the contents and then adds/appends
-
 
 func IsFileExist(path string) bool {
 	_, err := os.Open(path)
 	if err != nil {
-		if _, ok := err.(*os.PathError);ok {
+		if _, ok := err.(*os.PathError); ok {
 			return false
 		}
 	}
 	return true
 }
 
-func CopyFile(src , destination string) error {
-	reader , err := os.Open(src)
+func IsFileExistV1(path string) bool {
+	_, err := os.Stat(path)
+	if err != nil {
+		if _, ok := err.(*os.PathError); ok {
+			return false
+		}
+	}
+	return true
+}
+
+func CopyFile(src, destination string) error {
+	reader, err := os.Open(src)
 	if err != nil {
 		return err
 	}
 	defer reader.Close()
-	writer , err := os.Create(destination)
+	writer, err := os.Create(destination)
 	if err != nil {
 		return err
 	}
 	defer writer.Close()
-	_, err = io.Copy(writer,reader)
-	if err!=nil{
+	_, err = io.Copy(writer, reader)
+	if err != nil {
 		return err
 	}
 	err = writer.Sync()
 	return err
 }
-func UncompressFile(pathOfCompressedFile , targetFileName string)error{
+func UncompressFile(pathOfCompressedFile, targetFileName string) error {
 	// Open compressed file
 	gzipFile, err := os.Open(pathOfCompressedFile)
 	if err != nil {
@@ -49,7 +59,7 @@ func UncompressFile(pathOfCompressedFile , targetFileName string)error{
 	// Again, it could be any type reader though
 	gzipReader, err := gzip.NewReader(gzipFile)
 	if err != nil {
-	return err
+		return err
 	}
 	defer gzipReader.Close()
 
@@ -64,7 +74,7 @@ func UncompressFile(pathOfCompressedFile , targetFileName string)error{
 	_, err = io.Copy(outfileWriter, gzipReader)
 	return err
 }
-func CompressFile(path string, compressFileName string ) error {
+func CompressFile(path string, compressFileName string) error {
 	file, err := os.Open(path)
 	if err != nil {
 		//log.Fatal(err)
